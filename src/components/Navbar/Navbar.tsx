@@ -5,51 +5,66 @@ import { IoMdCloseCircle } from "react-icons/io";
 import { categories } from "@/utils/data";
 import Link from "next/link";
 const Navbar = () => {
-  const [tran, setTran] = useState(100);
-  return (
-    <nav className="relative md:py-2 md:px-52 px-4 bg-white flex justify-between items-center shadow-lg">
-      <p className="md:text-4xl text-3xl font-bold capitalize py-2">newsy</p>
+  const [show, setShow] = useState(false);
 
-      <div className="capitalize font-semibold text-lg hidden md:flex items-center space-x-4">
+  return (
+    <nav className="overflow-hidden  relative md:py-2 md:px-52 px-4 bg-white flex justify-between items-center shadow-lg">
+      <Link href={`/`}>
+        <p className="md:text-4xl text-3xl font-bold capitalize py-2 cursor-pointer">
+          newsy
+        </p>
+      </Link>
+
+      <div className="capitalize font-semibold text-lg overflow-hidden hidden md:flex items-center space-x-4">
         <span className="hover:bg-gray-100 p-3 cursor-pointer rounded-md">
-          <Link href={`/`}>Home</Link>
+          <Link href={`/search`}>Search</Link>
         </span>
         {categories.map((category) => (
-          <span
-            key={category}
-            className="hover:bg-gray-100 p-3 cursor-pointer rounded-md"
-          >
-            <Link href={`/${category}`}>{category}</Link>
-          </span>
+          <>
+            <span
+              key={category}
+              className="hover:bg-gray-100 p-3 cursor-pointer rounded-md"
+            >
+              <Link href={`/${category}`}>{category}</Link>
+            </span>
+          </>
         ))}
       </div>
 
+      {/* MOBILE NAVBAR */}
       <p
         className="text-3xl font-bold md:hidden cursor-pointer border-none "
-        onClick={() => setTran(0)}
+        onClick={() => setShow(true)}
       >
         <FiMenu />
       </p>
 
       <div
-        className={`absolute z-[200] bg-white md:w-[20%] w-[55%] border-l-2 top-0 right-0 h-[100vh] 
-        translate-x-[${tran}%] capitalize font-semibold text-lg flex flex-col
-          space-x-4 transition duration-500 overflow-hidden py-10 ${
-            tran === 100 ? "hidden" : ""
-          }`}
+        className={`fixed z-50 md:hidden bg-white w-[70%] border-l-2 top-0 right-0 h-[100vh] 
+        ${show ? "translate-x-0" : "translate-x-[100%]"} 
+        flex flex-col space-x-4 transition duration-750 overflow-hidden py-10 `}
       >
-        <p
-          className="absolute top-5 cursor-pointer left-5 text-3xl font-bold text-gray-800"
-          onClick={() => setTran(100)}
-        >
-          <IoMdCloseCircle />
+        <p className="absolute top-5 cursor-pointer left-5 text-3xl font-bold text-gray-800">
+          <IoMdCloseCircle onClick={() => setShow(false)} />
         </p>
-        <span className="border-b my-3 border-gray-400">
-          <Link href={`/`}>Home</Link>
+        <span className="border-b my-3 capitalize text-lg font-semibold border-gray-400">
+          <Link href={`/`} onClick={() => setShow(false)}>
+            home
+          </Link>
+        </span>
+        <span className="border-b my-3 capitalize text-lg font-semibold border-gray-400">
+          <Link href={`/search`} onClick={() => setShow(false)}>
+            search
+          </Link>
         </span>
         {categories.map((category) => (
-          <span key={category} className="border-b my-3 border-gray-400">
-            <Link href={`/${category}`}>{category}</Link>
+          <span
+            key={category}
+            className="border-b capitalize text-lg font-semibold my-3 border-gray-400"
+          >
+            <Link href={`/${category}`} onClick={() => setShow(false)}>
+              {category}
+            </Link>
           </span>
         ))}
       </div>
