@@ -6,7 +6,7 @@ import Link from "next/link";
 const Card = ({ post }: { post: Article }) => {
   return (
     <Link href={post?.url}>
-      <article className="lg:w-[25rem] h-[28rem] shadow-lg rounded-md relative flex flex-col bg-white cursor-pointer overflow-hidden">
+      <article className="h-[28rem] shadow-lg rounded-md relative flex flex-col bg-white cursor-pointer overflow-hidden">
         <p className="absolute bg-red-600 rounded-xl uppercase text-white p-1 px-3 text-xs md:top-6 top-3 left-3 md:left-6">
           {post?.source?.name}
         </p>
