@@ -15,7 +15,7 @@ export default async function useQuery({
         revalidate: 10,
       },
     });
-    const data = await res.json();
+    const data = await res.json();    
     return data;
   };
 

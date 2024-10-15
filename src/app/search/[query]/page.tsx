@@ -14,8 +14,12 @@ const SearchResults = async ({
     query: params.query,
     page: searchParams.page,
   });
+  
 
-  const totalPages = Math.ceil(data?.totalResults / 21);
+  // const totalPages = Math.ceil(data?.totalResults / 21);
+  const totalPages = 4
+
+  
   const page = parseInt(searchParams.page);
 
   return (
@@ -32,21 +36,21 @@ const SearchResults = async ({
       {/* END OF NEWS AREA */}
 
       {/* PAGINATION */}
-      <div className="md:mx-52 mx-5 my-10">
+      <div className="md:mx-52 mx-5 flex flex-col items-center my-10">
         <p className="text-xl underline font-bold">
           Showing page {searchParams.page} of {totalPages}
         </p>
         <div className="flex space-x-2">
           <Link href={`/search/${params.query}?page=${page - 1}`}>
             <button
-              disabled={page === 1}
+              disabled={page <=1}
               className="text-white disabled:cursor-not-allowed disabled:bg-red-500/60 bg-red-500 px-6 py-2 mt-2 rounded-md"
             >
               Previous Page
             </button>
           </Link>
           <Link href={`/search/${params.query}?page=${page + 1}`}>
-            <button className="text-white bg-blue-700 px-6 py-2 mt-2 rounded-md">
+            <button className="text-white bg-blue-700 px-6 py-2 mt-2 rounded-md disabled:cursor-not-allowed" disabled={page>=totalPages}>
               Next Page
             </button>
           </Link>

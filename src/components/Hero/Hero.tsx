@@ -32,19 +32,14 @@ const Hero = ({ data: post }: { data: Article }) => {
               {post?.source?.name}
             </p>
 
-            <h3 className="md:my-4 my-1 text-4xl md:text-5xl text-white font-semibold">
+            <h3 className="md:my-4 my-1 text-4xl md:text-5xl text-white font-semibold line-clamp-[7]">
               {post?.title}
             </h3>
-            <p className="my-4 text-white text-lg leading-5">
-              {post?.description?.substring(0, 150)}...
+            <p className="my-4 text-white text-lg leading-5 line-clamp-5">
+              {post?.description}
             </p>
 
             <div className="my-5 flex space-x-2 items-center">
-              <img
-                src="/technology.jpg"
-                alt="technology"
-                className="w-6 h-6 rounded-full object-cover"
-              />
               <p className="text-sm text-white capitalize">{post?.author}</p>
             </div>
           </div>

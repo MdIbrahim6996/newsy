@@ -26,7 +26,7 @@ export default async function Home({ searchParams }: { searchParams: any }) {
       {/* END OF NEWS AREA */}
 
       {/* PAGINATION COMPONENT */}
-      <div className="md:mx-52 mx-5 my-10">
+      <div className="my-10 flex flex-col items-center">
         <p className="text-xl underline font-bold">
           Showing page {page} of {totalPages}
         </p>
@@ -40,7 +40,10 @@ export default async function Home({ searchParams }: { searchParams: any }) {
             </button>
           </Link>
           <Link href={`/?page=${parseInt(page) + 1}`}>
-            <button className="text-white bg-blue-700 px-6 py-2 mt-2 rounded-md">
+            <button
+              className="text-white bg-blue-700 px-6 py-2 mt-2 rounded-md disabled:cursor-not-allowed"
+              disabled={parseInt(page) >=totalPages}
+            >
               Next Page
             </button>
           </Link>

@@ -16,7 +16,7 @@ const HelpSupport = () => {
         community guidelines
       </p>
       <p className="capitalize text-gray-300 font-semibold border-b border-gray-600 p-2 hover:px-5 hover:text-white cursor-pointer transition-all duration-300">
-        about newsier
+        about newsy
       </p>
     </div>
   );
